@@ -1,15 +1,14 @@
 const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('../pages/LoginPage');
+const users = require('../data/users');
 
 test('TC03 - Locked out user cannot log in', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
+    const login = new LoginPage(page);
 
-    await page.locator('[data-test="username"]').fill('locked_out_user');
-    await page.locator('[data-test="password"]').fill('secret_sauce');
-    await page.locator('[data-test="login-button"]').click();
+    await login.goto();
+    await login.login(users.locked.username, users.locked.password);
 
-    const error = page.locator('h3[data-test="error"]');
-    await expect(error).toBeVisible();
-    await expect(error).toContainText(/locked out/i);
-
+    await expect(login.error).toBeVisible();
+    await expect(login.error).toContainText(/locked out/i);
     await expect(page).not.toHaveURL(/inventory\.html/);
 });

@@ -1,20 +1,20 @@
-const { test, expect } = require('@playwright/test')
+const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('../pages/LoginPage');
+const { InventoryPage } = require('../pages/InventoryPage');
+const users = require('../data/users');
 
-test('logout', async ({ page }) => {
+test('TC05 - User can log out successfully', async ({ page }) => {
+    const login = new LoginPage(page);
+    const inventory = new InventoryPage(page);
 
-    await page.goto('https://www.saucedemo.com/');
+    await login.goto();
+    await login.login(users.standard.username, users.standard.password);
 
-    await page.locator('[data-test="username"]').fill('standard_user');
-    await page.locator('[data-test="password"]').fill('secret_sauce');
-    await page.locator('[data-test="login-button"]').click();
+    await inventory.assertOnInventory();
+    await expect(inventory.title).toHaveText('Products');
 
-    await expect(page).toHaveURL(/inventory\.html/);
-    await expect(page.locator('.title')).toHaveText('Products');
-
-    await page.locator('#react-burger-menu-btn').click();
-    await page.locator('#logout_sidebar_link').click();
+    await inventory.logout();
 
     await expect(page).toHaveURL('https://www.saucedemo.com/');
-    await expect(page.locator('[data-test="login-button"]')).toBeVisible();
-
+    await expect(login.loginBtn).toBeVisible();
 });
