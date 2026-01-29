@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const users = require('../data/users');
 
-test('TC03 - Locked out user cannot log in', async ({ page }) => {
+test('TC03 @smoke - Locked out user cannot log in', async ({ page }) => {
     const login = new LoginPage(page);
 
     await login.goto();

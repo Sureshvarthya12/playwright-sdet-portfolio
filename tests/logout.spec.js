@@ -3,7 +3,7 @@ const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
 const users = require('../data/users');
 
-test('TC05 - User can log out successfully', async ({ page }) => {
+test('TC05 @smoke - User can log out successfully', async ({ page }) => {
     const login = new LoginPage(page);
     const inventory = new InventoryPage(page);
 
