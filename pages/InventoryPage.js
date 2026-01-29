@@ -1,21 +1,27 @@
+const { expect } = require('@playwright/test');
+
 class InventoryPage {
     constructor(page) {
         this.page = page;
+
         this.title = page.locator('.title');
-        this.menuBtn = page.locator('#react-burger-menu-btn');
-        this.logoutLink = page.locator('#logout_sidebar_link');
         this.cartLink = page.locator('.shopping_cart_link');
-        this.addBackpack = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
+
+        // Product actions
+        this.addBackpackBtn = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
     }
 
     async assertOnInventory() {
-        await this.page.waitForURL(/inventory\.html/);
+        await expect(this.page).toHaveURL(/inventory\.html/);
     }
 
-    async logout() {
-        await this.menuBtn.click();
-        await this.logoutLink.waitFor({ state: 'visible' });
-        await this.logoutLink.click();
+    async addBackpackToCart() {
+        await this.addBackpackBtn.click();
+    }
+
+    async goToCart() {
+        await this.cartLink.click();
+        await expect(this.page).toHaveURL(/cart\.html/);
     }
 }
 
