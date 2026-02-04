@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('SauceDemo Login', () => {
     test('valid login should land on inventory page', async ({ page }) => {
-        await page.goto('https://www.saucedemo.com/');
+        await page.goto('/');
 
         await page.locator('[data-test="username"]').fill('standard_user');
         await page.locator('[data-test="password"]').fill('secret_sauce');
@@ -14,7 +14,7 @@ test.describe('SauceDemo Login', () => {
     });
 
     test('invalid login should show an error message', async ({ page }) => {
-        await page.goto('https://www.saucedemo.com/');
+        await page.goto('/');
 
         await page.locator('[data-test="username"]').fill('wrong_user');
         await page.locator('[data-test="password"]').fill('wrong_pass');

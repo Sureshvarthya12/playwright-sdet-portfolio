@@ -1,4 +1,6 @@
 const { test, expect } = require('@playwright/test');
+test.use({ storageState: 'storageState.json' });
+
 const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
 const { CartPage } = require('../pages/CartPage');

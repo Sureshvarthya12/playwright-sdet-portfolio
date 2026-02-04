@@ -1,4 +1,6 @@
-const { test, expect } = require('@playwright/test')
+const { test, expect } = require('@playwright/test');
+test.use({ storageState: 'storageState.json' });
+
 
 test('logout', async ({ page }) => {
 

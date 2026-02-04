@@ -3,9 +3,10 @@ const { expect } = require('@playwright/test');
 class InventoryPage {
     constructor(page) {
         this.page = page;
-
         this.title = page.locator('.title');
         this.cartLink = page.locator('.shopping_cart_link');
+        this.menuBtn = page.locator('#react-burger-menu-btn');
+        this.logoutLink = page.locator('#logout_sidebar_link');
 
         // Product actions
         this.addBackpackBtn = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]');
@@ -17,6 +18,11 @@ class InventoryPage {
 
     async addBackpackToCart() {
         await this.addBackpackBtn.click();
+    }
+
+    async logout() {
+        await this.menuBtn.click();
+        await this.logoutLink.click();
     }
 
     async goToCart() {
