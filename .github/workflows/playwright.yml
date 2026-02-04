@@ -9,6 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      CI: true
 
     steps:
       - name: Checkout
@@ -26,7 +28,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run smoke tests
-        run: npx playwright test --grep "@smoke"
+        run: npx playwright test --grep "@smoke" --reporter=html
 
       - name: Upload HTML report
         if: always()
