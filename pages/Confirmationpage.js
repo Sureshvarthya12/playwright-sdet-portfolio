@@ -31,8 +31,6 @@ export class ConfirmationPage {
         await expect(this.finishBtn).toBeVisible();
         await this.finishBtn.click();
         await expect(this.successMessage).toBeVisible();
-
-
     }
 
 }

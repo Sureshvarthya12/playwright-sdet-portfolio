@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures/basetest';
 import { CheckoutPage } from '../../pages/CheckoutPage';
-import { ConfirmationPage } from '../../pages/ConfirmationPage'
+import { ConfirmationPage } from '../../pages/ConfirmationPage';
 
 test('Confirmation', async ({ inventoryPage, page }) => {
     await inventoryPage.addBackpackToCart();
