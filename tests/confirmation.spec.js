@@ -24,7 +24,7 @@ test('checkout', async ({ page }) => {
     await inventoryPage.isLoaded();
     await inventoryPage.addBackpackToCart();
     const badgecount = await inventoryPage.getBadgeCount();
-    expect(badgecount).toBe('1');
+    expect(badgecount).toBe(1);
 
     // Go to cart
     await inventoryPage.openCart();
@@ -36,7 +36,7 @@ test('checkout', async ({ page }) => {
     await expect(page).toHaveURL(/checkout-step-one.html/);
     await checkoutPage.fillCheckoutForm('james', 'hunt', '12345');
     await expect(page).toHaveURL(/checkout-step-two.html/);
-    await expect(inventoryPage.badgeLocator).toHaveText('1');
+    await expect(inventoryPage.badgeLocator).toHaveText(1);
     await confirmationPage.verifyOverviewPage();
 
 
