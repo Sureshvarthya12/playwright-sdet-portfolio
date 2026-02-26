@@ -8,6 +8,7 @@ export class InventoryPage {
         this.badgeLocator = page.locator('[data-test="shopping-cart-badge"]');
         this.cartLink = page.locator('[data-test="shopping-cart-link"]');
         this.itemName = page.locator('[data-test="inventory-item-name"]');
+        this.removefromcart = page.locator('[data-test="remove-sauce-labs-backpack"]')
 
     }
     async verifyInventoryPageLoaded() {
@@ -19,14 +20,20 @@ export class InventoryPage {
     async addBackpackToCart() {
         await this.backpackButton.click();
     }
-    async getBadgeCount(expectedCount) {
-        const actual = await this.badgeLocator.count();
-        expect(actual).toBe(expectedCount);
+    async verifyBadgeCount() {
+        if (await this.badgeLocator.count() === 0) {
+            return 0;
+        }
+        const text = await this.badgeLocator.textContent();
+        return Number(text?.trim());
     }
     async openCart() {
         await this.cartLink.click();
     }
     async verifyBackpackInCart() {
         await expect(this.itemName).toBeVisible();
+    }
+    async removeitemfromcart() {
+        await this.removefromcart.click();
     }
 }

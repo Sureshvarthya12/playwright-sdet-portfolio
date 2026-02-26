@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures/basetest';
 
-test('should add backpack to cart', async ({ inventoryPage }) => {
+test('should remove item from cart', async ({ inventoryPage }) => {
     await inventoryPage.addBackpackToCart();
 
     await expect(inventoryPage.badgeLocator).toHaveText('1');
@@ -9,4 +9,7 @@ test('should add backpack to cart', async ({ inventoryPage }) => {
     await expect(inventoryPage.page).toHaveURL(/cart.html/);
 
     await inventoryPage.verifyBackpackInCart();
+    await inventoryPage.removeitemfromcart();
+    await expect(inventoryPage.badgeLocator).toHaveCount(0);
+
 });

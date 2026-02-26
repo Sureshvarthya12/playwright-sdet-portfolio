@@ -4,7 +4,7 @@ import { CheckoutPage } from '../../pages/CheckoutPage';
 
 test('Checkout', async ({ inventoryPage, page }) => {
     await inventoryPage.addBackpackToCart();
-    await inventoryPage.getBadgeCount(1);
+    await expect(inventoryPage.badgeLocator).toHaveText('1');
 
     await inventoryPage.openCart();
     await expect(page).toHaveURL(/cart\.html/);

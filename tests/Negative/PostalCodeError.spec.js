@@ -3,7 +3,7 @@ import { CheckoutPage } from '../../pages/CheckoutPage';
 
 test('First Name Error Message in checkout page', async ({ inventoryPage, page }) => {
     await inventoryPage.addBackpackToCart();
-    await inventoryPage.getBadgeCount(1);
+    await expect(inventoryPage.badgeLocator).toHaveText('1');
 
     await inventoryPage.openCart();
     await expect(page).toHaveURL(/cart\.html/);
