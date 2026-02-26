@@ -1,8 +1,7 @@
 import { test, expect } from '../../fixtures/basetest';
 import { CheckoutPage } from '../../pages/CheckoutPage';
-import { ConfirmationPage } from '../../pages/ConfirmationPage';
 
-test('Confirmation', async ({ inventoryPage, page }) => {
+test('First Name Error Message in checkout page', async ({ inventoryPage, page }) => {
     await inventoryPage.addBackpackToCart();
     await inventoryPage.getBadgeCount(1);
 
@@ -13,11 +12,6 @@ test('Confirmation', async ({ inventoryPage, page }) => {
     const checkoutPage = new CheckoutPage(page);
     await checkoutPage.clickCheckout();
     await expect(page).toHaveURL(/checkout-step-one\.html/);
-
-    await checkoutPage.fillCheckoutForm('james', 'hunt', '12345');
-    await expect(page).toHaveURL(/checkout-step-two\.html/);
-
-    const confirmationPage = new ConfirmationPage(page);
-    await confirmationPage.verifyOverviewPage();
-
+    await checkoutPage.fillCheckoutForm('', 'hunt', '12345');
+    await checkoutPage.expectFirstNameRequiredError();
 });

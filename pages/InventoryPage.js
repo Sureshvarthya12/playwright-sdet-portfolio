@@ -19,9 +19,9 @@ export class InventoryPage {
     async addBackpackToCart() {
         await this.backpackButton.click();
     }
-    async getBadgeCount() {
-        const text = await this.badgeLocator.textContent();
-        return Number(text);
+    async getBadgeCount(expectedCount) {
+        const actual = await this.badgeLocator.count();
+        expect(actual).toBe(expectedCount);
     }
     async openCart() {
         await this.cartLink.click();
