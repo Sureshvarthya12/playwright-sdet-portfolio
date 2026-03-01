@@ -30,6 +30,10 @@ export default defineConfig({
       name: 'setup',
       testMatch: /.*\.setup\.js/,
     },
+    {
+      name: 'api',
+      testDir: './tests/api',
+    },
 
     {
       name: 'chromium',

@@ -11,5 +11,7 @@ test('should remove item from cart', async ({ inventoryPage }) => {
     await inventoryPage.verifyBackpackInCart();
     await inventoryPage.removeitemfromcart();
     await expect(inventoryPage.badgeLocator).toHaveCount(0);
+    await inventoryPage.verifyBackpackNotInCart();
+
 
 });

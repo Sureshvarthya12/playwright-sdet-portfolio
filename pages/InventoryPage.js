@@ -36,4 +36,7 @@ export class InventoryPage {
     async removeitemfromcart() {
         await this.removefromcart.click();
     }
+    async verifyBackpackNotInCart() {
+        await expect(this.itemName).toHaveCount(0);
+    }
 }
