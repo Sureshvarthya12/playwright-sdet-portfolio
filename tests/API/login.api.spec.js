@@ -15,4 +15,6 @@ test('GET products API should return 200 and list of products', async ({ request
 
     // Validate one field
     expect(body.products[0]).toHaveProperty('title');
+
+    console.log(await response.json());
 });
